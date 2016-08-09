@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+{%block head%}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="renderer" content="webkit">
+<title>{%block title%}{%endblock%}-后台管理</title>
+<!--[if lt IE 9]>
+  <script src="js/IE/html5shiv.min.js"></script>
+  <script src="js/IE/respond.min.js"></script>
+  <![endif]-->
+<link href="{{url_for('static', filename='admin/css/bootstrap.min.css')}}" rel="stylesheet">
+<link href="{{url_for('static', filename='admin/css/font-awesome.min.css')}}" rel="stylesheet">
+<link href="{{url_for('static', filename='admin/css/animate.css')}}" rel="stylesheet">
+<link href="{{url_for('static', filename='admin/css/style.css')}}" rel="stylesheet">
+<!-- 全局js -->
+<script src="{{url_for('static', filename='admin/js/jquery-2.1.1.min.js')}}"></script>
+<script src="{{url_for('static', filename='admin/js/bootstrap.min.js')}}"></script>
+<script src="{{url_for('static', filename='admin/js/jquery.metisMenu.js')}}"></script>
+<script src="{{url_for('static', filename='admin/js/jquery.slimscroll.min.js')}}"></script>
+<script src="{{url_for('static', filename='admin/js/layer.min.js')}}"></script>
+<script src="{{url_for('static', filename='admin/js/contabs.js')}}"></script>
+
+<!-- 自定义js -->
+<script src="{{url_for('static', filename='admin/js/hplus.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='admin/js/contabs.js')}}"></script>
+{%endblock%}
+</head>
+<body class="fixed-sidebar full-height-layout gray-bg">
+<div id="wrapper"> 
+  <!--左侧导航开始-->
+  <nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+      <ul class="nav" id="side-menu">
+        <li class="nav-header">
+          <div class="dropdown profile-element"> <span> <img alt="image" class="img-circle" style="border-radius:0%;" src="{{url_for('static', filename='images/img2.png')}}" width="80" height="80" /> </span> <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:"> <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{current_user.number}}</strong></span> <span class="text-muted text-xs block">管理员 <b class="caret"></b></span> </span> </a>
+            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+              <!-- <li> <a class="J_menuItem" href="编辑资料.html">个人资料</a> </li> -->
+              <!-- <li class="divider"></li> -->
+              <li> <a href="{{ url_for('auth.logout') }}">安全退出</a> </li>
+            </ul>
+          </div>
+          <div class="logo-element">B</div>
+        </li>
+        <li> <a href="javascript:"> <i class="fa fa-file-text-o"></i> <span class="nav-label">信息中心</span> <span class="fa arrow"></span> </a>
+          <ul class="nav nav-second-level">
+            <li><a class="J_menuItem" href="AddArticle">添加文章</a></li>
+            <li><a class="J_menuItem" href="Navcat">导航管理</a></li>
+            <li><a class="J_menuItem" href="Article">文章管理</a></li>
+            <li><a class="J_menuItem" href="Banner">banner管理</a></li>
+          </ul>
+        </li>
+        <li> <a href="javascript:"> <i class="fa fa fa-user"></i> <span class="nav-label">用户管理</span> <span class="fa arrow"></span> </a>
+          <ul class="nav nav-second-level">
+            <li><a class="J_menuItem" href="ChangePassword">修改密码</a></li>
+            
+            
+            <!-- <li><a class="J_menuItem" href="/Admin/Tree/map/">系谱图</a></li> --> 
+            
+            <!-- <li><a class="J_menuItem" href="/Admin/Member/memberList/is_pass/1/">已开通会员</a></li> --> 
+            <!-- <li><a class="J_menuItem" href="/Admin/Member/memberList/is_pass/0/">未开通会员</a></li>
+                            <li><a class="J_menuItem" href="/Admin/Member/agentList/is_agent/2/"> 已开通报单中心</a></li>
+                            <li><a class="J_menuItem" href="/Admin/Member/agentList/is_agent/1/">未开通报单中心</a></li> --> 
+            <!-- <li><a class="J_menuItem" href="/Admin/Upgrade/upgradeList/">会员升级</a></li> -->
+          </ul>
+        </li>
+        
+        
+        <li> <a href="javascript:"> <i class="fa fa-cog"></i> <span class="nav-label">系统管理 </span> <span class="fa arrow"></span> </a>
+          <ul class="nav nav-second-level">
+            <!-- <li><a class="J_menuItem" href="/Admin/Other/qqSet/" target="iframe0">QQ客服</a></li> -->
+            <!-- <li><a class="J_menuItem" href="tuijianjiang">推荐奖</a></li> -->
+            <!-- <li><a class="J_menuItem" href="key">激活码</a></li> -->
+            <li><a class="J_menuItem" href="参数设置.html">参数设置</a></li>
+            <li><a class="J_menuItem" href="数据库操作.html">数据库操作</a></li>
+          </ul>
+        </li>
+        <li> <a href="{{ url_for('auth.logout') }}"><i class="fa fa-lock"></i> <span class="nav-label">安全退出</span></a> </li>
+      </ul>
+    </div>
+  </nav>
+  <!--左侧导航结束--> 
+  
+  <!--右侧部分开始-->
+  <div id="page-wrapper" class="gray-bg dashbard-1">
+    <div class="row border-bottom">
+      <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+          <form role="search" class="navbar-form-custom" method="get" action="/Admin/Member/memberList/" target="iframe0">
+            <div class="form-group">
+              <input type="text" name="userid" placeholder="" class="form-control" name="top-search" id="top-search">
+            </div>
+          </form>
+        </div>
+        <ul class="nav navbar-top-links navbar-right">
+          <li><span class="m-r-sm text-muted welcome-message"><a href="javascript:" title="返回首页"><i class="fa fa-home"></i></a>欢迎登陆到系统后台</span> </li>
+          <li class="dropdown"> <a class="count-info J_menuItem" href="/Admin/Message/inbox/"> <i class="fa fa-envelope"></i> <span class="hidden">收件箱</span><span class="label label-warning">0</span> </a> </li>
+          <li> <a href="/Admin/Index/loginout/"> <i class="fa fa-sign-out"></i> 退出 </a> </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="row content-tabs">
+      <button class="roll-nav roll-left J_tabLeft"><i class="fa fa-angle-double-left"></i></button>
+      <nav class="page-tabs J_menuTabs">
+        <div class="page-tabs-content" style="margin-left: 0px;"> 
+        <a href="/admin"  class="J_menuTab" data-id="/admin">首页</a> </div>
+      </nav>
+      <button class="roll-nav roll-right J_tabRight"><i class="fa fa-angle-double-right"></i></button>
+    </div>
+    <div class="row J_mainContent" id="content-main">
+
+{%block body%}{%endblock%}
+
+    </div>
+    <div class="footer">
+      <div class="pull-right">xxx- 版权所有</div>
+    </div>
+  </div>
+  <!--右侧部分结束--> 
+  
+</div>
+</body>
+</html>

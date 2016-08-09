@@ -1,0 +1,80 @@
+<div class="header">
+	<div class="hd_top tr">
+		<div class="container">
+			<span style="float:left; margin-left:30px;">{{sys.webname}}</span>
+			<span>
+                    <a href="/">网站首页</a>|<a href="#">产品中心</a>|<a href="#">联系我们</a>
+            </span>
+		</div>
+	</div>
+
+	<div class="hd_cont container">
+        <!-- cb_LOGO -->
+        <dl class="hd_logo">
+                <img src="{{url_for('static', filename='images/201511201626475715.png')}}">
+        </dl>
+        <dl class="dh_phone fr">
+            <dt>咨询热线</dt>
+            <dd class="d1">
+                18862193108</dd>
+        </dl>
+    </div>
+    <div class="dh_nav" style="background:url({{url_for('static', filename='images/navBg.png')}}) repeat-x center;">
+        <ul class="container">
+            <li style="background:url({{url_for('static', filename='images/navLi.png')}}) no-repeat left center;"><a class="navHome navCur" href="/">网站首页</a></li>
+
+            {%for i in navcattop %}
+            {%if i.nlink%}
+<li style="background:url({{url_for('static', filename='images/navLi.png')}}) no-repeat left center;"><a href="{{i.nlink}}" >{{i.title}}</a></li>
+{%else%}
+            
+<li style="background:url({{url_for('static', filename='images/navLi.png')}}) no-repeat left center;"><a href="/category/{{i.url}}" >{{i.title}}</a></li>
+{%endif%}
+{%endfor%}
+        </ul>
+    </div>
+    <div class="searchBg">
+        <div class="search container" style="background:url({{url_for('static', filename='images/search.png')}}) no-repeat center;">
+            <span class="keyWord fl">热门产品: <span id="commonHeaderkeywords">
+ 
+<a  href="/goods/66.html">氦质谱检漏仪维修</a>
+    
+<a  href="/goods/68.html">分子泵维修</a>
+    
+<a  href="/goods/65.html">干式真空泵维修</a>
+    
+<a  href="/goods/128.html">低温泵</a>
+    
+<a  href="/goods/127.html">二手销售</a>
+    
+<a  href="/goods/112.html">真空计</a>
+    
+<a  href="/goods/110.html">隔膜泵维修</a>
+    
+<a  href="/goods/69.html">滑阀泵维修</a>
+    
+<a  href="/goods/67.html">分子泵控制器维修</a>
+    
+<a  href="/goods/64.html">油泵维修</a>
+    
+<a  href="/goods/63.html">涡旋干泵维修</a>
+    
+<a  href="/goods/62.html">罗茨泵维修</a>
+    
+<a  href="/goods/60.html">低温泵冷泵维修</a>
+    
+<a  href="/goods/59.html">配件</a>
+   
+</span> </span>
+        </div>
+        <!-- end container -->
+    </div>
+</div>
+
+ <div class="bannerBox">
+<script src="{{url_for('static', filename='js/AC_RunActiveContent.js')}}" type="text/javascript"></script>
+<embed width="100%" height="380" src="{{url_for('static', filename='bcastr.swf')}}" quality="high" wmode="transparent" 
+flashvars="bcastr_file={{url_for('static', filename='images/banner1.jpg')}}&amp;bcastr_config=0x008000:fontcolor|4:fontform|0x008000:fontbgcolor|0:fonttouming|0xffffff:anjiancolor|0xE89B00:bottoncolor|0xE89B00:nowbottoncolor|5:palytime|3:picclass|1:botton|_blank:winodws " type="application/x-shockwave-flash"></embed>
+    </div>
+
+    

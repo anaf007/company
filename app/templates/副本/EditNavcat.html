@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>添加导航</title>
+
+	<!--[if lt IE 9]>
+	<script src="{{url_for('static', filename='admin/js/html5shiv.min.js')}}"></script>
+	<script src="{{url_for('static', filename='admin/js/respond.min.js')}}"></script>
+	<![endif]-->
+
+    <link href="{{url_for('static', filename='admin/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='admin/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='admin/css/animate.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='admin/css/style.css')}}" rel="stylesheet">
+
+    <!-- 全局js -->
+    <script src="{{url_for('static', filename='admin/js/jquery-2.1.1.min.js')}}"></script>
+    <script src="{{url_for('static', filename='admin/js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='admin/js/plugins/jquery.metisMenu.js')}}"></script>
+    <script src="{{url_for('static', filename='admin/js/plugins/jquery.slimscroll.min.js')}}"></script>
+    <script src="{{url_for('static', filename='admin/js/plugins/layer.min.js')}}"></script>
+
+    <!-- 自定义js -->
+    <script src="{{url_for('static', filename='admin/js/hplus.js')}}"></script>
+
+    <!-- 第三方插件 -->
+    <!--<script src="{{url_for('static', filename='admin/js/plugins/pace/pace.min.js')}}"></script>-->
+	<link href="{{url_for('static', filename='admin/css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet" media="screen">
+	<script type="text/javascript" src="{{url_for('static', filename='admin/js/bootstrap-datetimepicker.js')}}" charset="UTF-8"></script>
+	<script type="text/javascript" src="{{url_for('static', filename='admin/js/bootstrap-datetimepicker.zh-CN.js')}}" charset="UTF-8"></script>
+</head>
+
+<body class="gray-bg">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>更改导航</h2>
+        </div>
+    </div>
+
+
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+				<div class="ibox">
+					<div class="ibox-content">
+						<form name="artform" role="form" method="post" enctype="multipart/form-data" action="" class="form-horizontal">
+							<div class="form-group">
+								<label for="tid" class="col-sm-2 control-label">是否显示</label>
+								<div class="tid col-sm-8 form-inline">
+									<div class="checkbox">
+								      <label>
+								      {%if navcatOne.show %}
+								      <input type="checkbox" checked="checked" name="show"> 
+								      {%else%}
+<input type="checkbox"  name="show"> 
+								      {%endif%}
+								      </label>
+								   </div>
+								</div>
+							</div>
+							<div class="form-group-separator"></div>
+
+							<div class="form-group">
+								<label for="title" class="col-sm-2 control-label">导航名称</label>
+								<div class="col-sm-3"><input type="text" name="title" id="title" class="form-control" placeholder="请输入小于10个字的导航名称" value="{{navcatOne.title}}" /></div>
+							</div>
+							<div class="form-group-separator"></div>
+
+							<div class="form-group">
+								<label for="summary" class="col-sm-2 control-label">排序</label>
+								<div class="col-sm-3"><input type="text" name="sort" id="title" class="form-control" placeholder="排序" value="{{navcatOne.sort}}" /></div>
+								<span class="help-block"></span>
+							</div>
+							<div class="form-group-separator"></div>
+
+							<div class="form-group ">
+								<label for="all_num" class="col-sm-2 control-label">栏目属性</label>
+								<div class="col-sm-3">
+								<select class="form-control" name="attr">
+								{% if navcatOne.attr %}
+								<option value="1" selected="selected">栏目列表</option>
+								{%else%}
+								{%endif %}		
+
+								<option value="1" >栏目列表</option>
+								<option value="0" >内容页</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group-separator"></div>
+							
+							<div class="form-group">
+								<label for="price" class="col-sm-2 control-label">外部链接</label>
+								<div class="col-sm-3">
+								<input type="text" name="nlink" id="nlink" class="form-control" placeholder="" value="{{navcatOne.nlink}}" /></div>
+								<span class="help-block">如输入 http://www.baidu.com</span>
+							</div>
+							<div class="form-group-separator"></div>
+							
+							
+							<div class="form-group ">
+								<label for="express" class="col-sm-2 control-label">页面模板</label>
+								<div class="col-sm-3"><input type="text" name="html" id="html" class="form-control" placeholder="" value="{{navcatOne.html}}" /></div>
+								<span class="help-block">不输入默认内容页为n.html,文章列表为a.html</span>
+							</div>
+							<div class="form-group-separator"></div>
+							
+							<div class="form-group ">
+								<label for="condbuy" class="col-sm-2 control-label">栏目关键词</label>
+								<div class="col-sm-3"><input type="text" name="seoKey" id="seoKey" class="form-control" placeholder="请输入5个关键词用于添加搜索" value="{{navcatOne.seoKey}}" /></div>
+								<span class="help-block">关键词用,号隔开</span>
+							</div>
+							<div class="form-group-separator"></div>
+
+							<div class="form-group ">
+								<label for="condbuy" class="col-sm-2 control-label">栏目描述</label>
+								<div class="col-sm-8"><input type="text" name="seoDescription" id="seoDescription" class="form-control" placeholder="请输入50字内的描述用于添加搜索" value="{{navcatOne.seoDescription}}" /></div>
+								<span class="help-block"></span>
+							</div>
+							<div class="form-group-separator"></div>
+
+							<div class="form-group ">
+								<label for="condbuy" class="col-sm-2 control-label">上级目录</label>
+								<div class="col-sm-3">
+								<select class="form-control" name="pid">
+								 <option value=""></option>
+								{%for i in navcat%}	
+									<option value="{{i.id}}">{{i.title}}</option>	
+								{%endfor%}	
+									</select>
+								</div>
+							</div>
+							<div class="form-group-separator"></div>
+							
+							
+							
+							<div class="form-group">
+								<label for="ginfo" class="col-sm-2 control-label">栏目内容</label>
+								<div class="col-sm-10" id="ginfo">
+<textarea style="width:100%; height:300px;border: 1px solid #e5e6e7;" name='note' id='note' class="ckeditor" >{{navcatOne.note}}</textarea> 
+</div>
+							</div>
+							<div class="form-group-separator"></div>
+							
+							
+
+<input type="hidden" name="id" value="{{navcatOne.id}}">
+							<div class="col-sm-2"></div>
+							<button type="submit" class="btn btn-primary">
+								<span class="glyphicon glyphicon-floppy-saved"> 保 存</span>
+							</button>
+
+						</form>
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$('.form_date').datetimepicker({
+	        language:  'zh-CN',
+	        weekStart: 1,
+	        todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			minView: 2,
+			forceParse: 0
+	    });
+    	$('.form_datetime').datetimepicker({
+	        language:  'zh-CN',
+	        weekStart: 1,
+	        todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			forceParse: 0,
+	        format: "yyyy-mm-dd hh:ii"
+	    });
+
+	
+	});
+CKEDITOR.replace('note');
+
+</script>
+<script src="{{url_for('static',filename='ckeditor/ckeditor.js')}}"></script>
+    <script src="{{url_for('static',filename='ckeditor/config.js')}}"></script>
+    <script src="{{url_for('static',filename='ckeditor/styles.js')}}"></script>
+    <script src="{{url_for('static',filename='ckeditor/plugin.js')}}"></script>
+</body>
+
+</html>

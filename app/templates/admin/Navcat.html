@@ -1,0 +1,205 @@
+{% include "admin/top.html" %}
+
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+
+		<div class="panel panel-default">
+		   <div class="panel-body">
+				<form name="form" method="get" action="#" class="form-inline">
+					<div class="form-group">
+						<label for="title">标题名称</label>
+						<input type="text" id="title" name="title" value="" class="form-control" placeholder="">
+					</div>
+
+					<button type="submit" class="btn btn-primary">
+						<span class="glyphicon glyphicon-search"> 搜 索</span>
+					</button>
+
+					<button type="button" class="btn btn-primary"><a href="{{ url_for('admin.AddNavcat') }}" style="color:white">
+						<span class="glyphicon glyphicon-plus" > 添加导航</span></a>
+					</button>
+				</form>
+		   </div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="ibox">
+					<div class="ibox-contentb">
+						<table class="table table-bordered table-hover">
+							<thead>
+								<tr>
+									<th>名称</th>
+									<th>是否显示</th>
+									<th>栏目属性</th>
+									<th>排序</th>
+									<th>外部链接</th>
+									<th>页面模板</th>
+									<th>上级目录</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+							{%for i in navcat%}
+								<tr>
+									<td>{{i.title}}</td>
+									<td>{%if i.show%}<span class="text-success">是</span>{%else%}否{%endif%}</td>
+									<td>
+									{%if i.attr==0%}内容页{%endif%}
+									{%if i.attr==1%}文章列表{%endif%}
+									</td>
+									<td>{{i.sort}}</td>
+									<td>{{i.nlink}}</td>
+									<td>{{i.html}}</td>
+									<td>{%if i.pidtitle%}
+									{{i.pidtitle}}
+									{%endif%}</td>
+									<td>
+										<a href="AddNavcat/{{i.url}}"  class="glyphicon glyphicon-plus ">添加子分类</a> &nbsp;
+
+										<a href="EditNavcat/{{i.url}}" onclick="open_edit(this)" class="glyphicon glyphicon-edit v-edit" 
+										>编辑</a> &nbsp;
+										
+										<!-- <a href="javascript:" class="glyphicon glyphicon-remove v-remove">删除</a>&nbsp; -->
+
+										<!-- <a href="/Admin/Shop/goodsCategory/fid/1/" class="fa fa-sitemap">子分类</a> -->
+										
+									</td>
+								</tr>
+							{%endfor%}						
+
+
+								</tbody>
+						</table>
+						<div>
+							<ul class="pagination pull-right"></ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+
+
+	<div class="modal fade" id="alertbox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form method="post" id="msgreply" action="/Admin/Shop/goodsCategorySave/" class="form-horizontal" enctype="multipart/form-data" role="form">
+				<div class="modal-header">
+					<button type="button" class="close" 
+	               data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">删除栏目</h4>
+				</div>
+				<div class="modal-body">
+					<div class="old-info">
+
+						<div class="form-group">
+							<label for="qqaddn" class="col-sm-3 control-label">确定删除该栏吗， <br>！删除	</label>
+							<div class="col-sm-8" id="qqaddn"><input type="text" name="data[name]" class="form-control v-name" value="" /></div>
+						</div>
+
+						<div class="form-group ">
+							<label for="bank_card" class="col-sm-3 control-label">所属分类</label>
+							<div class="_city col-sm-4 form-inline">
+								<select name="data[fid]" class="form-control v-fid">
+									<option value="">一级大类</option>
+									<option value="1">服饰</option><option value="2">电器</option><option value="3">数码</option><option value="4">饮食</option>								</select>
+							</div>
+						</div>
+
+						<div class="form-group hidden">
+							<label for="qqaddn" class="col-sm-3 control-label">排序</label>
+							<div class="col-sm-8" id="qqaddn"><input type="text" name="data[sort_order]" class="form-control v-sort_order" value="" /></div>
+						</div>
+
+						<div class="form-group hidden">
+							<label for="qqaddn" class="col-sm-3 control-label">广告图片</label>
+							<div class="col-sm-5" id="qqaddn"><input type="file" id="img" name="img" class="form-control" /></div>
+							<span class="col-sm-4 help-block">尺寸：230 X 494</span>
+						</div>
+							<input type="hidden" name="data[old_img]" class="v-img" value="">
+
+						<div class="form-group hidden">
+							<label for="url" class="col-sm-3 control-label">连接地址</label>
+							<div class="col-sm-8" id="url"><input type="text" name="data[url]" class="form-control v-url" value="" /></div>
+						</div>
+
+						<div class="form-group">
+							<label for="bank_card" class="col-sm-3 control-label">是否显示</label>
+							<div class="_city col-sm-4 form-inline">
+								<select class="form-control v-display" name="data[display]">
+									<option value="1">显示</option>
+									<option value="0">不显示</option>
+								</select> 
+							</div>
+						</div>
+
+					</div>
+					
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" 
+	               data-dismiss="modal">关闭</button>
+					<button type="submit" class="btn btn-primary">提交保存</button>
+				</div>
+				<input type="hidden" name="data[id]" value="" class="v-id">
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$('.form_date').datetimepicker({
+	        language:  'zh-CN',
+	        weekStart: 1,
+	        todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			minView: 2,
+			forceParse: 0
+	    });
+
+	
+	});
+</script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$("#addvideo").click(function(event) {
+			$(".v-id").val('');
+			$('#alertbox').modal();
+		});
+		$(".v-remove").click(function(event) {
+			$(".v-name").val($(this).attr('o-name'));
+			if($(this).attr('o-fid')=='0'){
+				$(".v-fid").val('');
+			}else{
+				$(".v-fid").val($(this).attr('o-fid'));
+			}
+			
+			$(".v-sort_order").val($(this).attr('o-sort'));
+			$(".v-display").val($(this).attr('o-display'));
+			$(".v-id").val($(this).attr('o-id'));
+			$(".v-url").val($(this).attr('o-url'));
+			$(".v-img").val($(this).attr('o-img'));
+			$('#alertbox').modal();
+		});
+		
+	});
+</script>
+
+</body>
+
+</html>

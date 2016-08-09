@@ -1,0 +1,18 @@
+<script type="text/javascript" src="__DIR__"></script>
+<script src="{{url_for('static', filename='ckfinder/ckfinder.js')}}"></script>
+<script type="text/javascript">
+    function BrowseServer() 
+    {
+
+         var finder = new CKFinder() ; 
+         finder.basePath = '__DIR__' ;
+     　　 finder.selectActionFunction = SetFileField;
+         finder.popup() ;
+     }
+
+     function SetFileField( fileUrl, data ) 
+     {
+           $('#file').val(fileUrl);
+     }
+     BrowseServer();
+</script>

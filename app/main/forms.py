@@ -1,0 +1,30 @@
+#coding=utf-8
+from flask.ext.wtf import Form
+from wtforms import StringField, SubmitField,IntegerField
+from wtforms.validators import Required
+class reaccountForm(Form):
+	center = IntegerField(u'报单中心', validators=[Required()]) 
+	tuijian = IntegerField(u'推荐人', validators=[Required()]) 
+	jiedian = IntegerField(u'接点人', validators=[Required()]) 
+	number = IntegerField(u'会员账号', validators=[Required()]) 
+	pwd = IntegerField(u'登录密码', validators=[Required()]) 
+	pwd1 = IntegerField(u'确认登录密码', validators=[Required()]) 
+	apwd = IntegerField(u'安全密码', validators=[Required()]) 
+	apwd2 = IntegerField(u'确认安全密码', validators=[Required()]) 
+	name = IntegerField(u'姓名', validators=[Required()]) 
+	phone = IntegerField(u'联系电话', validators=[Required()]) 
+	yinhang = IntegerField(u'开户银行', validators=[Required()]) 
+	kahao = IntegerField(u'银行卡号', validators=[Required()]) 
+	xingming = IntegerField(u'开户姓名', validators=[Required()]) 
+	chengshi = IntegerField(u'开户城市', validators=[Required()]) 
+	shengfen = IntegerField(u'开户省份', validators=[Required()]) 
+	dizhi = IntegerField(u'开户地址', validators=[Required()]) 
+	shenfenzheng = IntegerField(u'身份证号', validators=[Required()]) 
+	address = IntegerField(u'联系地址', validators=[Required()]) 
+	youxiang = IntegerField(u'电子邮箱', validators=[Required()]) 
+	qq = IntegerField(u'联系QQ', validators=[Required()]) 
+	shouhuoren = IntegerField(u'收货人姓名', validators=[Required()]) 
+	sdinahua = IntegerField(u'收货人电话', validators=[Required()]) 
+	sdizhi = IntegerField(u'收货人地址', validators=[Required()]) 
+	proctre = IntegerField(u'购买产品', validators=[Required()]) 
+	submit = SubmitField(u'保存')
